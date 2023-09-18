@@ -5,6 +5,13 @@
     background-color: #f3f7fa;
 }
 
+.main_container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .ticketWrapper{
     width: 100%;
     display:flex;
@@ -17,4 +24,76 @@
     width: 100%;
     padding:15px;
     background-color: white;
+    display: flex;
+    border:1px solid rgb(112, 106, 106, 0.2);
+    /* flex-direction: column; */
+}
+
+.info_row{
+    display: flex;
+    width: 100%;
+    gap:15px;
+    color:black;
+}
+
+.info_col{
+    display: flex;
+     flex-direction: column;
+    width: 100%;
+    gap:10px;
+    color:black;
+    justify-self: start;
+}
+
+.button{
+    background-color: orangered;
+}
+
+.empty:hover{
+    background-color: hsla(207, 82%, 53%, 0.13);
+}
+p{
+    margin: 0;
+}
+
+.stops{
+    border-bottom: 1px solid gray;
+    white-space: nowrap;
+    height: 20px;
+    padding: 10px;
+}
+
+.selected{
+    background-color: #2196f3;
+    color:white;
+}
+
+.empty{
+    background-color: white;
+    border: 1px solid #2196f3;
+    color: #2196f3
+}
+
+.checked{
+    background-color: white;
+    /* background-color: green; */
+    border: 1px solid #2196f3;
+    color: #2196f3;
+    position: relative;
+}
+
+.checked:before{
+    content: '✓';
+    left:30px;
+    color:#2196f3;
+    position: absolute;
+    /* padding-right:25px ; */
+    /* text-align: left; */
+}
+
+.unchecked{
+    border: 1px solid gray;
+    opacity: 0.5;
+    background-color: white;
+    color:gray;
 }

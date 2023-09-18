@@ -1,6 +1,5 @@
 import './styles.css'
 import { useEffect, useState } from 'react';
-
 type Ticket={
     item:{
         origin: string,
@@ -24,12 +23,14 @@ switch(currency){
     case 'RUB': return price + ' ₽';
     case 'USD': return Math.round(price/value) + ' $';
     case 'EUR': return Math.round(price/value) + ' €';
+  
     default: return undefined;
 }
 }
 
 export default function Ticket({item, currency}:Ticket) {
     const[value, setValue]=useState()
+    console.log('ITEM', item)
     useEffect(()=>{
          fetch('https://www.cbr-xml-daily.ru/daily_json.js').then(response => response.json())
         .then(value => {
@@ -39,10 +40,30 @@ export default function Ticket({item, currency}:Ticket) {
         }
     });
     },[currency])
-    console.log('currencyValue', value)
   return (
     <div className='ticket'>
-      <button>{`Купить за ${getPrice(item.price, currency, value||1)}`}</button>
+        <div className='info_col'>
+            <img src="../../public/Turkish_Airlines_logo.png"    width={150} alt='logo'/>
+            <button className='button'>{`Купить за ${getPrice(item.price, currency, value||1)}`}</button>
+        </div>
+        <div className='info_row'>
+            <div className='info_col'>
+                <p>{item.departure_time}</p>
+                {/* <div className='info_row'> */}
+                    <p>{item.origin},{item.origin_name}</p>
+                {/* </div> */}
+                <p>{item.departure_date}</p>
+            </div>
+             <div className='stops'>{item.stops}{item.stops===1?' пересадка':" пересадки"}</div>
+             <div className='info_col'>
+                <p>{item.arrival_time}</p>
+                {/* <div className='info_row'> */}
+                    <p>{item.origin},{item.origin_name}</p>
+                {/* </div> */}
+                <p>{item.arrival_date}</p>
+            </div>
+        </div>
+        
     </div>
   );
 }

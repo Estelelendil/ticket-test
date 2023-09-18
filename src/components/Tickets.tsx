@@ -12,11 +12,12 @@ function Mapping(currency:string):React.ReactNode{
 }
 export default function Tickets() {
   const [currency, setCurrency]=useState<'RUB'|'USD'|'EUR'>('USD')
+  const [stepsFilter, setStepsFilter]=useState<number[]>([])
     // const data = JSON.parse(tickets)
     console.log(tickets.tickets[1])
   return (
-    <div>
-      <Filter currency={currency} setCurrency={setCurrency}/>
+    <div className='main_container'>
+      <Filter currency={currency} setCurrency={setCurrency} stepsFilter={stepsFilter} setStepsFilter={setStepsFilter}/>
       {Mapping(currency)}  
     </div>
   );
