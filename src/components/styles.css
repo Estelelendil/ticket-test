@@ -5,10 +5,27 @@
     background-color: #f3f7fa;
 }
 
+.h2{
+    color:gray;
+    text-align: left;
+}
+
+.filter{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    border:1px solid rgb(112, 106, 106, 0.2);
+   gap:11px;
+   color:gray;
+   justify-self: start;
+    width: 400px;
+}
 .main_container{
     display: flex;
     width: 100%;
     justify-content: space-between;
+    gap:40px;
     align-items: flex-start;
 }
 
@@ -26,11 +43,11 @@
     background-color: white;
     display: flex;
     border:1px solid rgb(112, 106, 106, 0.2);
-    /* flex-direction: column; */
 }
 
 .info_row{
     display: flex;
+    justify-content: space-between;
     width: 100%;
     gap:15px;
     color:black;
@@ -39,13 +56,14 @@
 .info_col{
     display: flex;
      flex-direction: column;
+     align-items: center;
     width: 100%;
     gap:10px;
     color:black;
-    justify-self: start;
 }
 
 .button{
+    width: 200px;
     background-color: orangered;
 }
 
@@ -75,8 +93,8 @@ p{
 }
 
 .checked{
+    width: 100%;
     background-color: white;
-    /* background-color: green; */
     border: 1px solid #2196f3;
     color: #2196f3;
     position: relative;
@@ -87,11 +105,11 @@ p{
     left:30px;
     color:#2196f3;
     position: absolute;
-    /* padding-right:25px ; */
-    /* text-align: left; */
+
 }
 
 .unchecked{
+    width: 100%;
     border: 1px solid gray;
     opacity: 0.5;
     background-color: white;

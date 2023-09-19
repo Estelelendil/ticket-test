@@ -42,24 +42,20 @@ export default function Ticket({item, currency}:Ticket) {
     },[currency])
   return (
     <div className='ticket'>
-        <div className='info_col'>
-            <img src="../../public/Turkish_Airlines_logo.png"    width={150} alt='logo'/>
+        <div >
+            <img src="/Turkish_Airlines_logo.png"    width={150} alt='logo'/>
             <button className='button'>{`Купить за ${getPrice(item.price, currency, value||1)}`}</button>
         </div>
         <div className='info_row'>
             <div className='info_col'>
                 <p>{item.departure_time}</p>
-                {/* <div className='info_row'> */}
                     <p>{item.origin},{item.origin_name}</p>
-                {/* </div> */}
                 <p>{item.departure_date}</p>
             </div>
              <div className='stops'>{item.stops}{item.stops===1?' пересадка':" пересадки"}</div>
              <div className='info_col'>
                 <p>{item.arrival_time}</p>
-                {/* <div className='info_row'> */}
                     <p>{item.origin},{item.origin_name}</p>
-                {/* </div> */}
                 <p>{item.arrival_date}</p>
             </div>
         </div>

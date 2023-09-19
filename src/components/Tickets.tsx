@@ -3,22 +3,29 @@ import tickets from '../../tickets.json'
 import Ticket from './Ticket';
 import Filter from './Filter';
 
-function Mapping(currency:string):React.ReactNode{
+function Mapping(currency:string, stepsFilter:number[]):React.ReactNode{
   const length=tickets.tickets.length
+  const result=[]
   for (let i = 0; i < length; i++) {
-    // result.push(callback.call(args, arr[i], i, arr));
-    return <Ticket item={tickets.tickets[i]} currency={currency}/>
+    console.log('map item ', tickets.tickets[i])
+    if(stepsFilter.length===0||stepsFilter.includes(tickets.tickets[i].stops)){//TODO ?
+     
+        result.push(<Ticket item={tickets.tickets[i]} currency={currency}/>)//TODO ?
+      
+    }
   }
+  return result
 }
 export default function Tickets() {
   const [currency, setCurrency]=useState<'RUB'|'USD'|'EUR'>('USD')
-  const [stepsFilter, setStepsFilter]=useState<number[]>([])
-    // const data = JSON.parse(tickets)
-    console.log(tickets.tickets[1])
+  const [stopsFilter, setStopsFilter]=useState<number[]>([])
+    console.log('tickets', Mapping(currency, stopsFilter))
   return (
     <div className='main_container'>
-      <Filter currency={currency} setCurrency={setCurrency} stepsFilter={stepsFilter} setStepsFilter={setStepsFilter}/>
-      {Mapping(currency)}  
+      <Filter currency={currency} setCurrency={setCurrency} stopsFilter={stopsFilter} setStopsFilter={setStopsFilter}/>
+      <div className='info_col'>
+        {Mapping(currency, stopsFilter)}  
+      </div>
     </div>
   );
 }
