@@ -25,10 +25,10 @@ const addFilter=(number:number)=>{
     const newFilters=[...stopsFilter]
     const index=checkIndex(number)
     if(index|| index===0){
-        newFilters.splice(index, 1)//TODO ?
+        newFilters.splice(index, 1)
         setStopsFilter(newFilters)
     }else{
-        newFilters.push(number) //TODO ?
+        newFilters.push(number)
         setStopsFilter(newFilters)
     }
 }

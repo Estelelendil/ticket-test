@@ -3,14 +3,19 @@ import tickets from '../../tickets.json'
 import Ticket from './Ticket';
 import Filter from './Filter';
 
-function Mapping(currency:string, stepsFilter:number[]):React.ReactNode{
+function Mapping(currency:string, stopsFilter:number[]):React.ReactNode{
   const length=tickets.tickets.length
   const result=[]
   for (let i = 0; i < length; i++) {
     console.log('map item ', tickets.tickets[i])
-    if(stepsFilter.length===0||stepsFilter.includes(tickets.tickets[i].stops)){//TODO ?
-     
-        result.push(<Ticket item={tickets.tickets[i]} currency={currency}/>)//TODO ?
+    let isPassedFilters
+    for(let j=0; j<stopsFilter.length; j++){
+      if(stopsFilter[j]===tickets.tickets[i].stops){
+        isPassedFilters=true
+      }
+    }
+     if(stopsFilter.length===0||isPassedFilters){
+        result.push(<Ticket item={tickets.tickets[i]} currency={currency}/>)
       
     }
   }
