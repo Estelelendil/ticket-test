@@ -18,28 +18,22 @@ type Ticket={
 }
 
 function getPrice(price:number, currency:string,value:number):string|undefined{
-console.log('getPrice', currency, value)
-switch(currency){
-    case 'RUB': return price + ' ₽';
-    case 'USD': return Math.round(price/value) + ' $';
-    case 'EUR': return Math.round(price/value) + ' €';
-  
-    default: return undefined;
-}
+    switch(currency){
+        case 'RUB': return price + ' ₽';
+        case 'USD': return Math.round(price/value) + ' $';
+        case 'EUR': return Math.round(price/value) + ' €';
+        default: return undefined;
+    }
 }
 
 export default function Ticket({item, currency}:Ticket) {
-    const[value, setValue]=useState()
-    console.log('ITEM', item)
+    const[value, setValue]=useState<number>();
+
     useEffect(()=>{
          fetch('https://www.cbr-xml-daily.ru/daily_json.js').then(response => response.json())
-        .then(value => {
-        console.log('getActualCurrencyValue',value.Valute[currency].Value, currency)
-        if(currency!=='RUB'){
-            setValue(value.Valute[currency].Value)
-        }
-    });
+        .then(value => currency!=='RUB'&& setValue(value.Valute[currency].Value));
     },[currency])
+    
   return (
     <div className='ticket'>
         <div >

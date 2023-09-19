@@ -3,28 +3,25 @@ import tickets from '../../tickets.json'
 import Ticket from './Ticket';
 import Filter from './Filter';
 
-function Mapping(currency:string, stopsFilter:number[]):React.ReactNode{
-  const length=tickets.tickets.length
-  const result=[]
+function Mapping(currency:string, stopsFilter:number[]):React.ReactNode[]{
+  const length=tickets.tickets.length;
+  const result=[];
   for (let i = 0; i < length; i++) {
-    console.log('map item ', tickets.tickets[i])
-    let isPassedFilters
+    let isPassedFilters;
     for(let j=0; j<stopsFilter.length; j++){
       if(stopsFilter[j]===tickets.tickets[i].stops){
-        isPassedFilters=true
+        isPassedFilters=true;
       }
     }
      if(stopsFilter.length===0||isPassedFilters){
         result.push(<Ticket item={tickets.tickets[i]} currency={currency}/>)
-      
     }
   }
-  return result
+  return result;
 }
 export default function Tickets() {
   const [currency, setCurrency]=useState<'RUB'|'USD'|'EUR'>('USD')
   const [stopsFilter, setStopsFilter]=useState<number[]>([])
-    console.log('tickets', Mapping(currency, stopsFilter))
   return (
     <div className='main_container'>
       <Filter currency={currency} setCurrency={setCurrency} stopsFilter={stopsFilter} setStopsFilter={setStopsFilter}/>

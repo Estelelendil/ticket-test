@@ -5,35 +5,33 @@ export default function Filter({currency, setCurrency, stopsFilter, setStopsFilt
      stopsFilter:number[]
     setStopsFilter:Dispatch<SetStateAction<number[]>>}) {
 
-
-
-    function checkIndex(number:number){
-        let index
+    function checkIndex(number:number):number|undefined{
+        let index;
         for (let i = 0; i < stopsFilter.length; i++) {
             if(stopsFilter[i]===number){
-                index=i
+                index=i;
             }
         }
-        console.log('index', index)
-        return index
+        return index;
     }
-const getButtonClass=(number:number):string=>{
 
-        return checkIndex(number)||checkIndex(number)===0?'checked':'unchecked'
-}
+    const getButtonClass=(number:number):string=>{
+        return checkIndex(number)||checkIndex(number)===0?'checked':'unchecked';
+    }
+
 const addFilter=(number:number)=>{
-    const newFilters=[...stopsFilter]
-    const index=checkIndex(number)
+    const newFilters=[...stopsFilter];
+    const index=checkIndex(number);
     if(index|| index===0){
-        newFilters.splice(index, 1)
-        setStopsFilter(newFilters)
+        newFilters.splice(index, 1);
+        setStopsFilter(newFilters);
     }else{
-        newFilters.push(number)
-        setStopsFilter(newFilters)
+        newFilters.push(number);
+        setStopsFilter(newFilters);
     }
 }
-console.log('FILTERS', stopsFilter)
-  return (
+
+return (
     <div className="filter">
         <h2>Валюта</h2>
         <div className="info_row">
